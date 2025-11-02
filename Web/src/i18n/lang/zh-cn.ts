@@ -75,6 +75,24 @@ export default {
 		layoutIframeViewOne: '内嵌 iframe1',
 		layoutIframeViewTwo: '内嵌 iframe2',
 	},
+	tagsView: {
+		refresh: '刷新',
+		close: '关闭',
+		closeOther: '关闭其它',
+		closeAll: '全部关闭',
+		fullscreen: '当前页全屏',
+		closeFullscreen: '关闭全屏',
+	},
+	notFound: {
+		foundTitle: '地址输入错误，请重新输入地址~',
+		foundMsg: '您可以先检查网址，然后重新输入或给我们反馈问题。',
+		foundBtn: '返回首页',
+	},
+	noAccess: {
+		accessTitle: '您未被授权，没有操作权限~',
+		accessMsg: '请联系管理员获取权限或检查您的操作是否正确。',
+		accessBtn: '返回首页',
+	},
 	staticRoutes: {
 		signIn: '登录',
 		notFound: '找不到此页面',
@@ -98,34 +116,29 @@ export default {
 		dropdown5: '退出登录',
 		dropdown6: '代码仓库',
 		searchPlaceholder: '菜单搜索：支持中文、路由路径',
-		newTitle: '通知',
-		newBtn: '全部已读',
-		newGo: '前往通知中心',
-		newDesc: '暂无通知',
-		logOutTitle: '提示',
-		logOutMessage: '此操作将退出登录, 是否继续?',
-		logOutConfirm: '确定',
-		logOutCancel: '取消',
-		logOutExit: '退出中',
+		org: {
+			signalR: {
+				reconnecting: '组织架构连接正在重连...',
+				reconnected: '组织架构连接已重连',
+				updated: '组织架构已更新',
+				updateFailed: '组织架构更新失败'
+			},
+			// 组织名称占位符，实际值会根据数据库中的组织名称动态生成
+			'总公司': '总公司',
+			'技术部': '技术部',
+			'市场部': '市场部',
+			'财务部': '财务部',
+			'人力资源部': '人力资源部'
+		}
 	},
-	tagsView: {
-		refresh: '刷新',
-		close: '关闭',
-		closeOther: '关闭其它',
-		closeAll: '全部关闭',
-		fullscreen: '当前页全屏',
-		closeFullscreen: '关闭全屏',
-	},
-	notFound: {
-		foundTitle: '地址输入错误，请重新输入地址~',
-		foundMsg: '您可以先检查网址，然后重新输入或给我们反馈问题。',
-		foundBtn: '返回首页',
-	},
-	noAccess: {
-		accessTitle: '您未被授权，没有操作权限~',
-		accessMsg: '联系方式：加QQ群探讨 665452019',
-		accessBtn: '重新授权',
-	},
+	newBtn: '全部已读',
+	newGo: '前往通知中心',
+	newDesc: '暂无通知',
+	logOutTitle: '提示',
+	logOutMessage: '此操作将退出登录, 是否继续?',
+	logOutConfirm: '确定',
+	logOutCancel: '取消',
+	logOutExit: '退出中',
 	layout: {
 		configTitle: '布局配置',
 		oneTitle: '全局主题',
@@ -192,5 +205,5 @@ export default {
 		btnOne: '残忍拒绝',
 		btnTwo: '马上更新',
 		btnTwoLoading: '更新中',
-	},
+	}
 };
