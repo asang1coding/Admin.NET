@@ -30,7 +30,9 @@ export const useUserInfo = defineStore('userInfo', {
 	actions: {
 		// 存储用户信息到浏览器缓存
 		async setUserInfos() {
-			this.userInfos = Session.get('userInfo') ?? <UserInfos>await this.getApiUserInfo();
+			const newUserInfo = Session.get('userInfo') ?? <UserInfos>await this.getApiUserInfo();
+			// 增量更新用户信息，仅更新变化的字段
+			this.userInfos = { ...this.userInfos, ...newUserInfo };
 		},
 
 		// 存储常量信息到浏览器缓存
@@ -82,6 +84,9 @@ export const useUserInfo = defineStore('userInfo', {
 							authBtnList: d.buttons,
 							tenantId: d.tenantId,
 							time: new Date().getTime(),
+							// 添加权限相关字段
+							orgPermissions: d.orgPermissions || [], // 组织权限列表
+							canViewAllOrgs: d.canViewAllOrgs || false, // 是否可以查看所有组织
 						};
 
 						// vue-next-admin 提交Id：225bce7 提交消息：admin-23.03.26:发布v2.4.32版本
