@@ -14,12 +14,14 @@
 				:only-one-node="state.onlyOneNode"
 				:clone-node-drag="state.cloneNodeDrag"
 				:node-draggable="state.nodeDraggable"
+				:define-menus="contextMenus"
+				@on-contextmenu="handleContextMenu"
 				style="background-color: var(--el-bg-color)"
 			>
 				<template v-slot="{ node }">
 					<div class="tree-org-node__text node-label">
 						<div class="node-title">{{ node.label }}</div>
-						<div class="node-id">编码：{{ node.id }}</div>
+						<div class="node-id">编码：<span class="code-highlight">{{ node.id }}</span></div>
 					</div>
 				</template>
 				<template v-slot:expand="{ node }">
@@ -54,6 +56,25 @@ const state = reactive({
 		color: '#FFFFFF',
 	},
 });
+
+// 自定义右键菜单类型
+interface ContextMenu {
+	name: string;
+	command: string;
+}
+
+// 自定义右键菜单
+const contextMenus: ContextMenu[] = [
+	{ name: '复制', command: 'copy' }
+];
+
+// 右键菜单事件处理
+const handleContextMenu = (command: string, node: any) => {
+	if (command === 'copy') {
+		// 复制节点文本到剪贴板
+		navigator.clipboard.writeText(node.label + ' (编码: ' + node.id + ')');
+	}
+};
 
 onMounted(async () => {
 	state.loading = true;
@@ -91,6 +112,14 @@ const InitOrg = (orgData: any, id: any) => {
 	}
 	.node-id {
 		font-size: 10px;
+	}
+	
+	.code-highlight {
+		background-color: #ffeb3b;
+		color: #333;
+		padding: 2px 4px;
+		border-radius: 2px;
+		font-weight: bold;
 	}
 }
 </style>
