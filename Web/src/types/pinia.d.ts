@@ -9,12 +9,44 @@ declare interface UserInfos<T = any> {
 	roles: string[];
 	time: number;
 	userName: string;
+	updateTime: number;
+	watermarkText?: string;
+	id?: number;
+	account?: string;
+	realName?: string;
+	phone?: string;
+	idCardNum?: string;
+	email?: string;
+	accountType?: number;
+	avatar?: string;
+	address?: string;
+	signature?: string;
+	orgId?: number;
+	orgName?: string;
+	posName?: string;
+	tenantId?: number;
 	[key: string]: T;
 }
 declare interface UserInfosState {
 	userInfos: UserInfos;
-	constList: T[];
-	dictList: T;
+	constList: any[];
+	dictList: any;
+	// WebSocket状态
+	wsConnected: boolean;
+	wsConnectionAttempts: number;
+	maxWsAttempts: number;
+	wsReconnectInterval: number;
+	// 性能监控
+	performance: {
+		userInfoLoadTime: number;
+		wsConnectionTime: number;
+		lastUpdateTime: number;
+	};
+	// 轮询状态
+	pollingInterval: NodeJS.Timeout | null;
+	isPolling: boolean;
+	// WebSocket实例
+	ws?: WebSocket;
 }
 
 // 路由缓存列表
